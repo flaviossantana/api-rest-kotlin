@@ -34,6 +34,8 @@ fun main() {
             } else {
                 jogo?.descricao = jogo?.titulo
             }
+
+            gamer.jogos.add(jogo)
         }
 
         resultado.onFailure {
@@ -43,10 +45,45 @@ fun main() {
         println("Deseja buscar um novo jogo? S/N ")
         val continuarPesquia = leitura.nextLine()
 
-        gamer.jogos.add(jogo)
+
 
     } while (continuarPesquia.equals("S", true))
 
-    println(gamer)
+    println("nome=" +gamer.nome + ", email="+gamer.email+", dataNascimento="+gamer.dataNascimento+", usuario="+gamer.usuario+", idInterno=" + gamer.idInterno)
+
+    gamer.jogos.sortBy {
+        it?.titulo
+    }
+
+    gamer.jogos.forEach{
+        println("Jogo: ${it?.titulo}")
+    }
+
+    val filtros = gamer.jogos.filter {
+        it?.titulo?.contains("sonic", true) ?: false
+    }
+
+    filtros.forEach{
+        println("Jogos do SONIC: ${it?.titulo}")
+    }
+
+
+
+    println("Deseja excluir algum jogo da lista original? S/N")
+    val opcao = leitura.nextLine()
+    if (opcao.equals("S", true)) {
+        gamer.jogos.forEach{
+            println("Jogo: ${it?.titulo}")
+        }
+        println("\n Informe a posição do jogo que deseja excluir: ")
+        val posicao = leitura.nextInt()
+        gamer.jogos.removeAt(posicao)
+        gamer.jogos.forEach{
+            println("Jogo: ${it?.titulo}")
+        }
+    }
+
+
+
     println("Pesquisa realizada com scuesso!")
 }

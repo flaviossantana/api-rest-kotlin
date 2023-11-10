@@ -3,7 +3,7 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
-import java.util.Scanner
+import java.util.*
 
 fun main() {
 
@@ -21,14 +21,17 @@ fun main() {
 
     val response = httpClient.send(request, BodyHandlers.ofString())
 
-    val json = response.body()
+    if (response.statusCode() == 404) {
+        println("Jogo não encontrado")
+        return
+    }
 
-    val jogoSharkAPI = Gson().fromJson(json, JogoSharkAPI::class.java)
 
+
+    val body = response.body()
+    val jogoSharkAPI = Gson().fromJson(body, JogoSharkAPI::class.java)
     println(jogoSharkAPI)
 
     val jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
-
     println(jogo)
-
 }

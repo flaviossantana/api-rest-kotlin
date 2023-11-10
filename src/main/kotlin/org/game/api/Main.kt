@@ -8,38 +8,41 @@ fun main() {
 
     val leitura = Scanner(System.`in`)
 
-    println("Digite um código de jogo para buscar na API: ")
-    val idBusca = leitura.nextLine()
+    do {
 
-    var jogo: Jogo? = null
-    val resultado = runCatching {
+        println("Digite um código de jogo para buscar na API: ")
+        val idBusca = leitura.nextLine()
 
-        val jogoSharkAPI = CheapsharkClient().buscaJogo(idBusca)
-        println(jogoSharkAPI)
+        var jogo: Jogo? = null
+        val resultado = runCatching {
+            val jogoSharkAPI = CheapsharkClient().buscaJogo(idBusca)
+            println(jogoSharkAPI)
 
-        jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
-        println(jogo)
-    }
-
-    resultado.onSuccess {
-        println("Deseja inserir uma descrição para o jogo pesquisado? S/N ")
-        val opcao = leitura.nextLine()
-
-        if (opcao.equals("S", true)) {
-            println("Digite uma descrição para o jogo pesquisado: ")
-            val descricao = leitura.nextLine()
-            jogo?.descricao = descricao
-        } else {
-            jogo?.descricao = jogo?.titulo
+            jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
+            println(jogo)
         }
-    }
 
-    resultado.onSuccess {
-        println("Pesquisa realizada com scuesso: $jogo")
-    }
+        resultado.onSuccess {
+            println("Deseja inserir uma descrição para o jogo pesquisado? S/N ")
+            val opcao = leitura.nextLine()
 
-    resultado.onFailure {
-        println("Erro ao buscar jogo: ${it.message}")
-    }
+            if (opcao.equals("S", true)) {
+                println("Digite uma descrição para o jogo pesquisado: ")
+                val descricao = leitura.nextLine()
+                jogo?.descricao = descricao
+            } else {
+                jogo?.descricao = jogo?.titulo
+            }
+        }
 
+        resultado.onFailure {
+            println("Erro ao buscar jogo: ${it.message}")
+        }
+
+        println("Deseja buscar um novo jogo? ")
+        val continuarPesquia = leitura.nextLine()
+
+    } while (continuarPesquia.equals("S", true))
+
+    println("Pesquisa realizada com scuesso!")
 }

@@ -10,6 +10,12 @@ fun main() {
 
     println(jogadorN1)
 
+    jogadorN1.let {
+        it.usuario = "jjs_top"
+    }
+
+    println(jogadorN1)
+
     val jogadorN2 = Gamer(
         "Maria Jogadora da Silva",
         "mjs@email.com",
@@ -17,7 +23,9 @@ fun main() {
         "mariica"
     )
 
-    println(jogadorN2)
+    jogadorN2.also {
+        println(it)
+    }
 
 }
 

@@ -1,7 +1,7 @@
 package org.game.api
 
 import org.game.api.client.CheapsharkClient
-import org.game.api.data.Jogo
+import org.game.api.data.modelo.Jogo
 import java.util.*
 
 fun main() {

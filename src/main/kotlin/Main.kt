@@ -3,13 +3,20 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
+import java.util.Scanner
 
 fun main() {
 
-    val httpClient: HttpClient = HttpClient.newHttpClient()
+    val leitura = Scanner(System.`in`)
 
+    println("Digite um código de jogo para buscar na API: ")
+
+    val idBusca = leitura.nextLine();
+    val path = "https://www.cheapshark.com/api/1.0/games?id=$idBusca"
+
+    val httpClient: HttpClient = HttpClient.newHttpClient()
     val request = HttpRequest.newBuilder()
-        .uri(URI.create("https://www.cheapshark.com/api/1.0/games?id=146"))
+        .uri(URI.create(path))
         .build()
 
     val response = httpClient.send(request, BodyHandlers.ofString())

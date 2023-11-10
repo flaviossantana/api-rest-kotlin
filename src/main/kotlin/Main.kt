@@ -23,28 +23,36 @@ fun main() {
 
     if (response.statusCode() == 404) {
         println("Jogo não encontrado")
-//        return
+        return
     }
+
+
+    var jogo: Jogo? = null
 
     val resultado = runCatching {
         val body = response.body()
         val jogoSharkAPI = Gson().fromJson(body, JogoSharkAPI::class.java)
         println(jogoSharkAPI)
 
-        val jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
+        jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
         println(jogo)
     }
 
     resultado.onSuccess {
         println("Deseja inserir uma descrição para o jogo pesquisado? S/N ")
-
         val opcao = leitura.nextLine()
 
-        if(opcao.equals("S", true)){
+        if (opcao.equals("S", true)) {
             println("Digite uma descrição para o jogo pesquisado: ")
             val descricao = leitura.nextLine()
+            jogo?.descricao = descricao
+        } else {
+            jogo?.descricao = jogo?.titulo
         }
+    }
 
+    resultado.onSuccess {
+        println("Pesquisa realizada com scuesso: $jogo")
     }
 
     resultado.onFailure {

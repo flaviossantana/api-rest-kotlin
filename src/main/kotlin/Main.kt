@@ -17,11 +17,20 @@ fun main() {
 
     println(json)
 
-    val jogo = Jogo()
-    jogo.titulo = "The Witcher 3: Wild Hunt"
-    jogo.capa = "https://steamcdn-a.akamaihd.net/steam/apps/292030/header.jpg?t=1605812508"
-    jogo.descricao = "The Witcher 3: Wild Hunt é um RPG de mundo aberto, ambientado em um mundo fantástico cheio de escolhas importantes e consequências de impacto. Em The Witcher, você joga como o caçador de monstros profissional Geralt da Rívia, que está em busca da criança da profecia em um vasto mundo aberto, rico em cidades mercantis, ilhas com piratas vikings, passagens perigosas nas montanhas e cavernas esquecidas a serem exploradas."
+    val theWitcher = Jogo(
+        "The Witcher 3: Wild Hunt",
+        "https://steamcdn-a.akamaihd.net/steam/apps/292030/header.jpg?t=1605812508")
 
-    println(jogo)
+    theWitcher.descricao = "The Witcher 3: Wild Hunt é um RPG de mundo aberto."
+
+    println(theWitcher)
+
+    val legoBatman = Jogo(
+        capa = "https://steamcdn-a.akamaihd.net/steam/apps/292030/header.jpg?t=1605812508",
+        titulo = "LEGO Batman")
+
+    legoBatman.descricao = "The Witcher 3: Wild Hunt é um RPG de mundo aberto."
+
+    println(legoBatman)
 
 }

@@ -1,3 +1,4 @@
+import com.google.gson.Gson
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -32,5 +33,10 @@ fun main() {
     legoBatman.descricao = "The Witcher 3: Wild Hunt é um RPG de mundo aberto."
 
     println(legoBatman)
+
+    val gson = Gson().fromJson(json, Informacao::class.java)
+
+    println(gson)
+
 
 }

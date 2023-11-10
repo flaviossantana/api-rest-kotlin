@@ -16,27 +16,12 @@ fun main() {
 
     val json = response.body()
 
-    println(json)
+    val jogoSharkAPI = Gson().fromJson(json, JogoSharkAPI::class.java)
 
-    val theWitcher = Jogo(
-        "The Witcher 3: Wild Hunt",
-        "https://steamcdn-a.akamaihd.net/steam/apps/292030/header.jpg?t=1605812508")
+    println(jogoSharkAPI)
 
-    theWitcher.descricao = "The Witcher 3: Wild Hunt é um RPG de mundo aberto."
+    val jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
 
-    println(theWitcher)
-
-    val legoBatman = Jogo(
-        capa = "https://steamcdn-a.akamaihd.net/steam/apps/292030/header.jpg?t=1605812508",
-        titulo = "LEGO Batman")
-
-    legoBatman.descricao = "The Witcher 3: Wild Hunt é um RPG de mundo aberto."
-
-    println(legoBatman)
-
-    val gson = Gson().fromJson(json, Informacao::class.java)
-
-    println(gson)
-
+    println(jogo)
 
 }

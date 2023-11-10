@@ -23,6 +23,8 @@ fun main() {
         "mariica"
     )
 
+    jogadorN2.email = "oi#email"
+
     jogadorN2.also {
         println(it)
     }

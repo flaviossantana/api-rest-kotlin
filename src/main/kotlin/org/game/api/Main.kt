@@ -1,12 +1,15 @@
 package org.game.api
 
 import org.game.api.client.CheapsharkClient
+import org.game.api.data.modelo.Gamer
 import org.game.api.data.modelo.Jogo
 import java.util.*
 
 fun main() {
 
     val leitura = Scanner(System.`in`)
+    val gamer = Gamer.criar(leitura)
+    println("Cadastro realizado com sucesso: $gamer ")
 
     do {
 
@@ -16,8 +19,6 @@ fun main() {
         var jogo: Jogo? = null
         val resultado = runCatching {
             val jogoSharkAPI = CheapsharkClient().buscaJogo(idBusca)
-            println(jogoSharkAPI)
-
             jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
             println(jogo)
         }
@@ -39,10 +40,13 @@ fun main() {
             println("Erro ao buscar jogo: ${it.message}")
         }
 
-        println("Deseja buscar um novo jogo? ")
+        println("Deseja buscar um novo jogo? S/N ")
         val continuarPesquia = leitura.nextLine()
+
+        gamer.jogos.add(jogo)
 
     } while (continuarPesquia.equals("S", true))
 
+    println(gamer)
     println("Pesquisa realizada com scuesso!")
 }

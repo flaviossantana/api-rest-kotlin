@@ -1,5 +1,6 @@
 package org.game.api.data.modelo
 
+import org.game.api.extensao.transformarEmIdade
 import java.util.*
 import kotlin.random.Random
 
@@ -63,7 +64,22 @@ data class Gamer(var nome: String, var email: String) {
                 println("Digite seu nome de usuário:")
                 val usuario = leitura.nextLine()
 
-                return Gamer(nome, email, dataNascimento, usuario)
+                val gamer = Gamer(nome, email, dataNascimento, usuario)
+
+                val transformarEmIdade = runCatching {
+                    val idade = gamer.dataNascimento?.transformarEmIdade()
+                    println("Você tem $idade anos")
+                }
+
+                transformarEmIdade.onFailure {
+                    println("Você deve preencher a data de nascimento no seguinte padrão -> dd/mm/aaaa")
+                }
+
+
+
+
+
+                return gamer
             }
 
             return Gamer(nome, email)

@@ -1,7 +1,9 @@
 package org.game.api.data.modelo
 
+import com.google.gson.GsonBuilder
 import org.game.api.client.GameHubClient
 import org.game.api.client.GamerHubClient
+import java.io.File
 import java.time.LocalDate
 
 
@@ -45,9 +47,17 @@ fun main() {
     jogadorN2.alugar(jogadorN2.pesquisados[2] ?: jogos[7], LocalDate.now(), LocalDate.now().plusDays(90))
     jogadorN2.alugar(jogadorN2.pesquisados[3] ?: jogos[8], LocalDate.now(), LocalDate.now().plusDays(90))
 
-
-
     println(jogadorN2)
+
+    val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+    val recomendacoes = gson.toJson(jogadorN1.recomendados)
+
+    println(recomendacoes)
+
+    val arquivoRecomendacao = File("recomendacoes.json")
+    arquivoRecomendacao.writeText(recomendacoes)
+    println(arquivoRecomendacao.absoluteFile)
+
 
 }
 

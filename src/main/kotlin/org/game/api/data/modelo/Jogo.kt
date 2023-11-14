@@ -1,10 +1,11 @@
 package org.game.api.data.modelo
 
+import com.google.gson.annotations.Expose
 import org.game.api.data.contrato.Recomendavel
 
 data class Jogo(
-    val titulo: String,
-    val capa: String,
+    @Expose val titulo: String,
+    @Expose val capa: String,
     val preco: Double): Recomendavel {
     var descricao: String? = null
     private val notas = mutableListOf<Int>()

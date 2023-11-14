@@ -22,7 +22,7 @@ data class Gamer(
         private set
     var plano: Plano = PlanoAvulso("BRONZE")
     val pesquisados = mutableListOf<Jogo?>()
-    private val recomendados = mutableListOf<Jogo>()
+    val recomendados = mutableListOf<Jogo>()
     val alugados = mutableListOf<Aluguel>()
     private val notas = mutableListOf<Int>()
     override val media: Double

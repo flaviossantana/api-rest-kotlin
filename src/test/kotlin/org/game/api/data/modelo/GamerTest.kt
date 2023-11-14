@@ -1,33 +1,22 @@
 package org.game.api.data.modelo
 
+import org.game.api.client.GameClient
+import org.game.api.client.GamerClient
+
 
 fun main() {
-    val jogadorN1 = Gamer("Jao Jogador da Silva", "jjs@email.com")
 
-    jogadorN1.let {
-        it.usuario = "jjs_vicio"
-    }
+    val jogadores = GamerClient().buscaGamer()
+    val jogo = GameClient().buscaJogo("128")
 
-    println(jogadorN1)
+    val jogador = jogadores[2]
 
-    jogadorN1.let {
-        it.usuario = "jjs_top"
-    }
+    println(jogador)
+    println(jogo)
 
-    println(jogadorN1)
+    val aluguel = jogador.alugar(jogo)
+    println(aluguel)
 
-    val jogadorN2 = Gamer(
-        "Maria Jogadora da Silva",
-        "mjs@email.com",
-        "01/09/2010",
-        "mariica"
-    )
-
-    jogadorN2.email = "oi#email"
-
-    jogadorN2.also {
-        println(it)
-    }
 
 }
 

@@ -18,8 +18,7 @@ fun main() {
 
         var jogo: Jogo? = null
         val resultado = runCatching {
-            val jogoSharkAPI = GameClient().buscaJogo(idBusca)
-            jogo = Jogo(jogoSharkAPI.info.title, jogoSharkAPI.info.thumb)
+            jogo = GameClient().buscaJogo(idBusca)
             println(jogo)
         }
 

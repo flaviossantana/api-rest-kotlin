@@ -45,6 +45,10 @@ data class Gamer(var nome: String, var email: String) {
         check(nome.isNotBlank() && nome.isNotEmpty()) { "Nome informado inválido :(" }
     }
 
+    fun alugar(jogo: Jogo): Aluguel {
+        return Aluguel(this, jogo)
+    }
+
     override fun toString(): String {
         return "Gamer(nome='$nome', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno, jogos=$jogos)"
     }

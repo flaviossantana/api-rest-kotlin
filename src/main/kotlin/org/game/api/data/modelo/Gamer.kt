@@ -16,6 +16,7 @@ data class Gamer(var nome: String, var email: String) {
         }
     var idInterno: String? = null
         private set
+    val plano = Plano("BRONZE")
     val jogos = mutableListOf<Jogo?>()
     val alugueis = mutableListOf<Aluguel>()
 

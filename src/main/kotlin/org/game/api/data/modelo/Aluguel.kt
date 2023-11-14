@@ -4,7 +4,8 @@ data class Aluguel(
     val gamer: Gamer,
     val jogo: Jogo,
     val periodo: Periodo) {
-    val valor: Double = jogo.preco * periodo.dias
+    val valor: Double = gamer.plano.caucularAluguel(this)
+
 
 
     override fun toString(): String {

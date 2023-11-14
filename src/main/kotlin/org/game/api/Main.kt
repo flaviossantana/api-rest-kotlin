@@ -1,6 +1,6 @@
 package org.game.api
 
-import org.game.api.client.GameCheapSharkClient
+import org.game.api.client.GameSharkClient
 import org.game.api.data.modelo.Gamer
 import org.game.api.data.modelo.Jogo
 import java.util.*
@@ -18,7 +18,7 @@ fun main() {
 
         var jogo: Jogo? = null
         val resultado = runCatching {
-            jogo = GameCheapSharkClient().buscaJogo(idBusca)
+            jogo = GameSharkClient().buscaJogo(idBusca)
             println(jogo)
         }
 

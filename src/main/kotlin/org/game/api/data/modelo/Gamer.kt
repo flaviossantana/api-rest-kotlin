@@ -17,6 +17,7 @@ data class Gamer(var nome: String, var email: String) {
     var idInterno: String? = null
         private set
     val jogos = mutableListOf<Jogo?>()
+    val alugueis = mutableListOf<Aluguel>()
 
     constructor(nome: String, email: String, dataNascimento: String, usuario: String) :
             this(nome, email) {
@@ -47,11 +48,19 @@ data class Gamer(var nome: String, var email: String) {
     }
 
     fun alugar(jogo: Jogo, inicio: LocalDate, final: LocalDate): Aluguel {
-        return Aluguel(this, jogo, Periodo(inicio, final))
+        val alugel = Aluguel(this, jogo, Periodo(inicio, final))
+        this.alugueis.add(alugel)
+        return alugel
     }
 
     override fun toString(): String {
-        return "Gamer(nome='$nome', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno, jogos=$jogos)"
+        return "Gamer(nome='$nome', " +
+                "email='$email', " +
+                "dataNascimento=$dataNascimento, " +
+                "usuario=$usuario, " +
+                "idInterno=$idInterno, " +
+                "jogos=$jogos," +
+                "aligueis=$alugueis)"
     }
 
     companion object {

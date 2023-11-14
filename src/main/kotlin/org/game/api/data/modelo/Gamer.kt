@@ -1,6 +1,7 @@
 package org.game.api.data.modelo
 
 import org.game.api.extensao.transformarEmIdade
+import java.time.LocalDate
 import java.util.*
 import kotlin.random.Random
 
@@ -45,8 +46,8 @@ data class Gamer(var nome: String, var email: String) {
         check(nome.isNotBlank() && nome.isNotEmpty()) { "Nome informado inválido :(" }
     }
 
-    fun alugar(jogo: Jogo): Aluguel {
-        return Aluguel(this, jogo)
+    fun alugar(jogo: Jogo, inicio: LocalDate, final: LocalDate): Aluguel {
+        return Aluguel(this, jogo, inicio, final)
     }
 
     override fun toString(): String {

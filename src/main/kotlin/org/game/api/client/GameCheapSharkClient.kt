@@ -5,7 +5,7 @@ import org.game.api.data.api.JogoSharkAPI
 import org.game.api.data.modelo.Jogo
 import org.game.api.extensao.toJogo
 
-class GameClient {
+class GameCheapSharkClient {
 
     fun buscaJogo(idBusca: String): Jogo {
 

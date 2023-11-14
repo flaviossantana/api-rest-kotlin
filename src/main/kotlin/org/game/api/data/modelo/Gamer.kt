@@ -64,6 +64,11 @@ data class Gamer(var nome: String, var email: String) {
                 "aligueis=$alugueis)"
     }
 
+    fun jogosDoMes(mesAluguel: Int): List<Aluguel> {
+        return this.alugueis
+            .filter { it.periodo.inicio.monthValue == mesAluguel }
+    }
+
     companion object {
         fun criar(leitura: Scanner): Gamer {
             println("Bem vindo! Vamos fazer seu cadastro. Digite seu nome:")

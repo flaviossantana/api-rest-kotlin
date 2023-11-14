@@ -27,10 +27,13 @@ fun main() {
     jogadorN2.jogos.add(jogos[5])
     jogadorN2.jogos.add(jogos[6])
     jogadorN2.jogos.add(jogos[7])
+    jogadorN2.jogos.add(jogos[8])
 
     jogadorN2.alugar(jogadorN2.jogos[0] ?: jogos[5], LocalDate.now(), LocalDate.now().plusDays(30))
     jogadorN2.alugar(jogadorN2.jogos[1] ?: jogos[6], LocalDate.now(), LocalDate.now().plusDays(60))
     jogadorN2.alugar(jogadorN2.jogos[2] ?: jogos[7], LocalDate.now(), LocalDate.now().plusDays(90))
+    jogadorN2.alugar(jogadorN2.jogos[3] ?: jogos[8], LocalDate.now(), LocalDate.now().plusDays(90))
+
 
     println(jogadorN2)
 

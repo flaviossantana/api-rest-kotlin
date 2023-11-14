@@ -13,16 +13,15 @@ fun main() {
     val jogadorN1 = jogadores[2]
     val jogadorN2 = jogadores[4]
 
+    jogadorN1.recomendar(6)
+    jogadorN1.recomendar(10)
+    jogadorN1.recomendar(9)
 
     jogadorN1.plano = PlanoAvulso("BRONZE")
     jogadorN1.alugar(jogos[1], LocalDate.now(), LocalDate.now().plusDays(3))
     jogadorN1.alugar(jogos[2], LocalDate.now(), LocalDate.now().plusDays(4))
     jogadorN1.alugar(jogos[3], LocalDate.now(), LocalDate.now().plusDays(20))
     jogadorN1.alugar(jogos[4], LocalDate.now(), LocalDate.now().plusDays(6))
-
-    jogadorN1.recomendar(5)
-    jogadorN1.recomendar(6)
-    jogadorN1.recomendar(9)
 
 
     println(jogadorN1)

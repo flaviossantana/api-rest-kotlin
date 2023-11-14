@@ -1,6 +1,6 @@
 package org.game.api.data.modelo
 
-open class Plano(var tipo: String) {
+abstract class Plano(var tipo: String) {
 
     open fun caucularAluguel(aluguel: Aluguel): Double {
         return aluguel.jogo.preco * aluguel.periodo.dias

@@ -3,7 +3,7 @@ package org.game.api.client
 import com.google.gson.Gson
 import org.game.api.data.api.JogoSharkAPI
 
-class CheapsharkClient {
+class GameClient {
 
     fun buscaJogo(idBusca: String): JogoSharkAPI {
 

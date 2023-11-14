@@ -2,7 +2,7 @@ package org.game.api.client
 
 fun main(){
 
-    val gamers = GamerClient().buscaGamer()
+    val gamers = GamerHubClient().buscaGamer()
 
     println(gamers)
 

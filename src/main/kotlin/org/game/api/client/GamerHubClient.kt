@@ -6,7 +6,7 @@ import org.game.api.data.api.GamerInfoAPI
 import org.game.api.data.modelo.Gamer
 import org.game.api.extensao.toGamer
 
-class GamerClient {
+class GamerHubClient {
 
     fun buscaGamer(): List<Gamer> {
 

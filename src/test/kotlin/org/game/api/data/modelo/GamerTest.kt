@@ -1,13 +1,13 @@
 package org.game.api.data.modelo
 
 import org.game.api.client.GameHubClient
-import org.game.api.client.GamerClient
+import org.game.api.client.GamerHubClient
 import java.time.LocalDate
 
 
 fun main() {
 
-    val jogadores = GamerClient().buscaGamer()
+    val jogadores = GamerHubClient().buscaGamer()
     val jogos = GameHubClient().buscaJogos()
 
     val jogadorN1 = jogadores[2]

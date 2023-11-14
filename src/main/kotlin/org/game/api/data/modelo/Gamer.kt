@@ -47,7 +47,7 @@ data class Gamer(var nome: String, var email: String) {
     }
 
     fun alugar(jogo: Jogo, inicio: LocalDate, final: LocalDate): Aluguel {
-        return Aluguel(this, jogo, inicio, final)
+        return Aluguel(this, jogo, Periodo(inicio, final))
     }
 
     override fun toString(): String {

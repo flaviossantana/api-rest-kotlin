@@ -54,7 +54,7 @@ fun main() {
 
     println(recomendacoes)
 
-    val arquivoRecomendacao = File("recomendacoes.json")
+    val arquivoRecomendacao = File("${jogadorN1.idInterno}_recomendacoes.json")
     arquivoRecomendacao.writeText(recomendacoes)
     println(arquivoRecomendacao.absoluteFile)
 

@@ -1,6 +1,5 @@
 package org.game.api.data.modelo
 
-import org.game.api.client.GameCheapSharkClient
 import org.game.api.client.GameHubClient
 import org.game.api.client.GamerClient
 import java.time.LocalDate

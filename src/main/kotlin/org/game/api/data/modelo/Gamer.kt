@@ -1,11 +1,15 @@
 package org.game.api.data.modelo
 
+import org.game.api.data.contrato.Recomendavel
 import org.game.api.extensao.transformarEmIdade
 import java.time.LocalDate
 import java.util.*
 import kotlin.random.Random
 
-data class Gamer(var nome: String, var email: String) {
+data class Gamer(
+    var nome: String,
+    var email: String
+): Recomendavel {
     var dataNascimento: String? = null
     var usuario: String? = null
         set(value) {
@@ -19,6 +23,9 @@ data class Gamer(var nome: String, var email: String) {
     var plano: Plano = PlanoAvulso("BRONZE")
     val jogos = mutableListOf<Jogo?>()
     val alugueis = mutableListOf<Aluguel>()
+    private val notas = mutableListOf<Int>()
+    override val media: Double
+        get() = notas.average()
 
     constructor(nome: String, email: String, dataNascimento: String, usuario: String) :
             this(nome, email) {
@@ -52,6 +59,10 @@ data class Gamer(var nome: String, var email: String) {
         val alugel = Aluguel(this, jogo, Periodo(inicio, final))
         this.alugueis.add(alugel)
         return alugel
+    }
+
+    override fun recomendar(nota: Int) {
+        notas.add(nota)
     }
 
     override fun toString(): String {

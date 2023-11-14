@@ -20,6 +20,11 @@ fun main() {
     jogadorN1.alugar(jogos[3], LocalDate.now(), LocalDate.now().plusDays(20))
     jogadorN1.alugar(jogos[4], LocalDate.now(), LocalDate.now().plusDays(6))
 
+    jogadorN1.recomendar(5)
+    jogadorN1.recomendar(6)
+    jogadorN1.recomendar(9)
+
+
     println(jogadorN1)
 
     jogadorN2.plano = PlanoAssinatura("OURO", 59.90, 3)
@@ -34,6 +39,7 @@ fun main() {
     jogadorN2.alugar(jogadorN2.jogos[2] ?: jogos[7], LocalDate.now(), LocalDate.now().plusDays(90))
     jogadorN2.alugar(jogadorN2.jogos[3] ?: jogos[8], LocalDate.now(), LocalDate.now().plusDays(90))
 
+    jogadorN2.recomendar(10)
 
     println(jogadorN2)
 

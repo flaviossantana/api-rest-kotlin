@@ -34,7 +34,7 @@ fun main() {
                 jogo?.descricao = jogo?.titulo
             }
 
-            gamer.jogos.add(jogo)
+            gamer.pesquisados.add(jogo)
         }
 
         resultado.onFailure {
@@ -50,15 +50,15 @@ fun main() {
 
     println("nome=" +gamer.nome + ", email="+gamer.email+", dataNascimento="+gamer.dataNascimento+", usuario="+gamer.usuario+", idInterno=" + gamer.idInterno)
 
-    gamer.jogos.sortBy {
+    gamer.pesquisados.sortBy {
         it?.titulo
     }
 
-    gamer.jogos.forEach{
+    gamer.pesquisados.forEach{
         println("Jogo: ${it?.titulo}")
     }
 
-    val filtros = gamer.jogos.filter {
+    val filtros = gamer.pesquisados.filter {
         it?.titulo?.contains("sonic", true) ?: false
     }
 
@@ -71,13 +71,13 @@ fun main() {
     println("Deseja excluir algum jogo da lista original? S/N")
     val opcao = leitura.nextLine()
     if (opcao.equals("S", true)) {
-        gamer.jogos.forEach{
+        gamer.pesquisados.forEach{
             println("Jogo: ${it?.titulo}")
         }
         println("\n Informe a posição do jogo que deseja excluir: ")
         val posicao = leitura.nextInt()
-        gamer.jogos.removeAt(posicao)
-        gamer.jogos.forEach{
+        gamer.pesquisados.removeAt(posicao)
+        gamer.pesquisados.forEach{
             println("Jogo: ${it?.titulo}")
         }
     }

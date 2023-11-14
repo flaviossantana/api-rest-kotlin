@@ -1,8 +1,19 @@
 package org.game.api.data.modelo
 
-data class Jogo(val titulo: String, val capa: String, val preco: Double) {
-    var descricao: String? = null
+import org.game.api.data.contrato.Recomendavel
 
+data class Jogo(
+    val titulo: String,
+    val capa: String,
+    val preco: Double): Recomendavel {
+    var descricao: String? = null
+    private val notas = mutableListOf<Int>()
+    override val media: Double
+        get() = notas.average()
+
+    override fun recomendar(nota: Int) {
+        notas.add(nota)
+    }
 
     override fun toString(): String {
         return "Jogo(titulo='$titulo', capa='$capa', descricao=$descricao, preco=$preco)"

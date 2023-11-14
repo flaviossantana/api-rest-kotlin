@@ -9,7 +9,7 @@ import kotlin.random.Random
 data class Gamer(
     var nome: String,
     var email: String
-): Recomendavel {
+) : Recomendavel {
     var dataNascimento: String? = null
     var usuario: String? = null
         set(value) {
@@ -21,8 +21,9 @@ data class Gamer(
     var idInterno: String? = null
         private set
     var plano: Plano = PlanoAvulso("BRONZE")
-    val jogos = mutableListOf<Jogo?>()
-    val alugueis = mutableListOf<Aluguel>()
+    val pesquisados = mutableListOf<Jogo?>()
+    private val recomendados = mutableListOf<Jogo>()
+    val alugados = mutableListOf<Aluguel>()
     private val notas = mutableListOf<Int>()
     override val media: Double
         get() = notas.average()
@@ -57,8 +58,13 @@ data class Gamer(
 
     fun alugar(jogo: Jogo, inicio: LocalDate, final: LocalDate): Aluguel {
         val alugel = Aluguel(this, jogo, Periodo(inicio, final))
-        this.alugueis.add(alugel)
+        this.alugados.add(alugel)
         return alugel
+    }
+
+    fun avaliar(jogo: Jogo, nota: Int) {
+        jogo.recomendar(nota)
+        recomendados.add(jogo)
     }
 
     override fun recomendar(nota: Int) {
@@ -71,12 +77,12 @@ data class Gamer(
                 "dataNascimento=$dataNascimento, " +
                 "usuario=$usuario, " +
                 "idInterno=$idInterno, " +
-                "jogos=$jogos," +
-                "aligueis=$alugueis)"
+                "jogos=$pesquisados," +
+                "aligueis=$alugados)"
     }
 
     fun jogosDoMes(mesAluguel: Int): List<Aluguel> {
-        return this.alugueis
+        return this.alugados
             .filter { it.periodo.inicio.monthValue == mesAluguel }
     }
 

@@ -19,7 +19,7 @@ data class Jogo(
         this.preco = preco
     }
 
-    constructor(titulo: String, capa: String, preco: Double, descricao: String, id: Int = 0) : this(titulo, capa) {
+    constructor(titulo: String, capa: String, preco: Double, descricao: String?, id: Int = 0) : this(titulo, capa) {
         this.preco = preco
         this.descricao = descricao
         this.id = id

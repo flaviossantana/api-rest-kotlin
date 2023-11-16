@@ -30,6 +30,6 @@ data class Jogo(
     }
 
     override fun toString(): String {
-        return "Jogo(titulo='$titulo', capa='$capa', descricao=$descricao, preco=$preco)"
+        return "\nJogo(\n titulo='$titulo',\n capa='$capa',\n descricao=$descricao,\n preco=$preco)"
     }
 }

@@ -27,6 +27,18 @@ class JogoDAO {
 
     }
 
+    fun todosH(): List<Jogo>{
+        val em = ConexaoDAO.getEntityManager();
+        try {
+
+            val query = em.createQuery("FROM JOGO", Jogo::class.java)
+            return query.resultList
+
+        }finally {
+            em.close()
+        }
+    }
+
     fun todos(): List<Jogo> {
 
         val jogos = mutableListOf<Jogo>()

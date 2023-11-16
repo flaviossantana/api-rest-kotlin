@@ -1,12 +1,17 @@
 package org.game.api.data.modelo
 
 import com.google.gson.annotations.Expose
+import jakarta.persistence.*
 import org.game.api.data.contrato.Recomendavel
 
+@Entity
+@Table(name = "jogos")
 data class Jogo(
     @Expose val titulo: String,
     @Expose val capa: String
 ) : Recomendavel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     var id = 0
     var preco = 0.0
     var descricao: String? = null
@@ -23,7 +28,6 @@ data class Jogo(
         this.descricao = descricao
         this.id = id
     }
-
 
     override fun recomendar(nota: Int) {
         notas.add(nota)

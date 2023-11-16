@@ -12,7 +12,7 @@ fun main(){
 
     JogoDAO().salvar(jogo)
 
-    val todos = JogoDAO().todos()
+    val todos = JogoDAO().todosH()
     println(todos)
 
 

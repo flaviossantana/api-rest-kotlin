@@ -4,6 +4,29 @@ import org.game.api.data.modelo.Jogo
 
 class JogoDAO {
 
+    fun salvar(jogo: Jogo) {
+
+        val conexao = ConexaoDAO.conectar()
+        val query = "INSERT INTO jogos (capa, descricao, preco, titulo) VALUES(?, ?, ?, ?);"
+
+        if (conexao != null) {
+            try {
+                val insert = conexao.prepareStatement(query)
+
+                insert.setString(1, jogo.capa)
+                insert.setString(2, jogo.descricao)
+                insert.setDouble(3, jogo.preco)
+                insert.setString(4, jogo.titulo)
+
+                insert.executeUpdate()
+                insert.close()
+            } finally {
+                conexao.close()
+            }
+        }
+
+    }
+
     fun todos(): List<Jogo> {
 
         val jogos = mutableListOf<Jogo>()

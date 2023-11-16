@@ -1,6 +1,8 @@
 package org.game.api.dao
 
+import org.game.api.data.entidade.JogoEntity
 import org.game.api.data.modelo.Jogo
+import org.game.api.extensao.toJogo
 
 class JogoDAO {
 
@@ -27,47 +29,14 @@ class JogoDAO {
 
     }
 
-    fun todosH(): List<Jogo>{
+    fun todos(): List<Jogo> {
         val em = ConexaoDAO.getEntityManager();
         try {
 
-            val query = em.createQuery("FROM JOGO", Jogo::class.java)
-            return query.resultList
-
-        }finally {
+            val query = em.createQuery("FROM JogoEntity", JogoEntity::class.java)
+            return query.resultList.map { jogoEntity -> jogoEntity.toJogo() }
+        } finally {
             em.close()
         }
     }
-
-    fun todos(): List<Jogo> {
-
-        val jogos = mutableListOf<Jogo>()
-        val conexao = ConexaoDAO.conectar()
-
-        if (conexao != null) {
-            try {
-                val select = conexao.createStatement()
-                val resultado = select.executeQuery("select * from jogos")
-
-
-                while (resultado.next()) {
-                    val id = resultado.getInt("id")
-                    val capa = resultado.getString("capa")
-                    val descricao = resultado.getString("descricao")
-                    val titulo = resultado.getString("titulo")
-                    val preco = resultado.getDouble("preco")
-
-                    jogos.add(Jogo(titulo, capa, preco, descricao, id))
-                }
-
-                select.close()
-            } finally {
-                conexao.close()
-            }
-        }
-
-        return jogos
-
-    }
-
 }

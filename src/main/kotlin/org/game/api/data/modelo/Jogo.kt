@@ -1,17 +1,13 @@
 package org.game.api.data.modelo
 
 import com.google.gson.annotations.Expose
-import jakarta.persistence.*
 import org.game.api.data.contrato.Recomendavel
 
-@Entity
-@Table(name = "jogos")
+
 data class Jogo(
     @Expose val titulo: String,
     @Expose val capa: String
 ) : Recomendavel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     var id = 0
     var preco = 0.0
     var descricao: String? = null
@@ -19,7 +15,7 @@ data class Jogo(
     override val media: Double
         get() = notas.average()
 
-    constructor(titulo: String, capa: String, preco: Double): this(titulo, capa){
+    constructor(titulo: String, capa: String, preco: Double) : this(titulo, capa) {
         this.preco = preco
     }
 

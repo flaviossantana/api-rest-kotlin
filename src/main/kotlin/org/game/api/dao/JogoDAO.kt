@@ -16,6 +16,6 @@ class JogoDAO(val entityManager: EntityManager) {
 
     fun todos(): List<Jogo> {
         val query = entityManager.createQuery("FROM JogoEntity", JogoEntity::class.java)
-        return query.resultList.map { jogoEntity -> jogoEntity.toJogo() }
+        return query.resultList.map { it.toJogo() }
     }
 }

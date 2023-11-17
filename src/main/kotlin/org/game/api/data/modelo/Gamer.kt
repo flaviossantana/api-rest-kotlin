@@ -10,6 +10,7 @@ data class Gamer(
     var nome: String,
     var email: String
 ) : Recomendavel {
+    var id = 0
     var dataNascimento: String? = null
     var usuario: String? = null
         set(value) {
@@ -28,11 +29,16 @@ data class Gamer(
     override val media: Double
         get() = notas.average()
 
-    constructor(nome: String, email: String, dataNascimento: String, usuario: String) :
+    constructor(nome: String, email: String, dataNascimento: String?, usuario: String?) :
             this(nome, email) {
         this.dataNascimento = dataNascimento
         this.usuario = usuario
         gerarIdentificador()
+    }
+
+    constructor(nome: String, email: String, dataNascimento: String?, usuario: String?, id: Int) :
+            this(nome, email, dataNascimento, usuario) {
+        this.id = id
     }
 
     init {

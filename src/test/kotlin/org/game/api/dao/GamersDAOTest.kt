@@ -11,8 +11,15 @@ fun main(){
 
     gamerDAO.salvar(gamerDTO)
 
-    val gamers = gamerDAO.todos()
+    var gamers = gamerDAO.todos()
 
-    println(gamers)
+    println(gamers.size)
+
+    val buscarPorId = gamerDAO.buscarPorId(gamers[gamers.size - 1].id)
+    gamerDAO.excluir(buscarPorId.id)
+
+    gamers = gamerDAO.todos()
+
+    println(gamers.size)
 
 }

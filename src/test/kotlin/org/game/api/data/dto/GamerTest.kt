@@ -1,4 +1,4 @@
-package org.game.api.data.modelo
+package org.game.api.data.dto
 
 import com.google.gson.GsonBuilder
 import org.game.api.client.GameHubClient
@@ -19,7 +19,7 @@ fun main() {
     jogadorN1.recomendar(10)
     jogadorN1.recomendar(9)
 
-    jogadorN1.plano = PlanoAvulso("BRONZE")
+    jogadorN1.planoDTO = PlanoAvulsoDTO("BRONZE")
     jogadorN1.alugar(jogos[1], LocalDate.now(), LocalDate.now().plusDays(3))
     jogadorN1.alugar(jogos[2], LocalDate.now(), LocalDate.now().plusDays(4))
     jogadorN1.alugar(jogos[3], LocalDate.now(), LocalDate.now().plusDays(20))
@@ -31,7 +31,7 @@ fun main() {
 
     println(jogadorN1)
 
-    jogadorN2.plano = PlanoAssinatura("OURO", 59.90, 3, 0.15)
+    jogadorN2.planoDTO = PlanoAssinaturaDTO("OURO", 59.90, 3, 0.15)
 
     jogadorN2.pesquisados.add(jogos[5])
     jogadorN2.pesquisados.add(jogos[6])

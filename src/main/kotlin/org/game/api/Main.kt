@@ -1,25 +1,25 @@
 package org.game.api
 
 import org.game.api.client.GameSharkClient
-import org.game.api.data.modelo.Gamer
-import org.game.api.data.modelo.Jogo
+import org.game.api.data.dto.GamerDTO
+import org.game.api.data.dto.JogoDTO
 import java.util.*
 
 fun main() {
 
     val leitura = Scanner(System.`in`)
-    val gamer = Gamer.criar(leitura)
-    println("Cadastro realizado com sucesso: $gamer ")
+    val gamerDTO = GamerDTO.criar(leitura)
+    println("Cadastro realizado com sucesso: $gamerDTO ")
 
     do {
 
         println("Digite um código de jogo para buscar na API: ")
         val idBusca = leitura.nextLine()
 
-        var jogo: Jogo? = null
+        var jogoDTO: JogoDTO? = null
         val resultado = runCatching {
-            jogo = GameSharkClient().buscaJogo(idBusca)
-            println(jogo)
+            jogoDTO = GameSharkClient().buscaJogo(idBusca)
+            println(jogoDTO)
         }
 
         resultado.onSuccess {
@@ -29,12 +29,12 @@ fun main() {
             if (opcao.equals("S", true)) {
                 println("Digite uma descrição para o jogo pesquisado: ")
                 val descricao = leitura.nextLine()
-                jogo?.descricao = descricao
+                jogoDTO?.descricao = descricao
             } else {
-                jogo?.descricao = jogo?.titulo
+                jogoDTO?.descricao = jogoDTO?.titulo
             }
 
-            gamer.pesquisados.add(jogo)
+            gamerDTO.pesquisados.add(jogoDTO)
         }
 
         resultado.onFailure {
@@ -48,17 +48,17 @@ fun main() {
 
     } while (continuarPesquia.equals("S", true))
 
-    println("nome=" +gamer.nome + ", email="+gamer.email+", dataNascimento="+gamer.dataNascimento+", usuario="+gamer.usuario+", idInterno=" + gamer.idInterno)
+    println("nome=" +gamerDTO.nome + ", email="+gamerDTO.email+", dataNascimento="+gamerDTO.dataNascimento+", usuario="+gamerDTO.usuario+", idInterno=" + gamerDTO.idInterno)
 
-    gamer.pesquisados.sortBy {
+    gamerDTO.pesquisados.sortBy {
         it?.titulo
     }
 
-    gamer.pesquisados.forEach{
+    gamerDTO.pesquisados.forEach{
         println("Jogo: ${it?.titulo}")
     }
 
-    val filtros = gamer.pesquisados.filter {
+    val filtros = gamerDTO.pesquisados.filter {
         it?.titulo?.contains("sonic", true) ?: false
     }
 
@@ -71,13 +71,13 @@ fun main() {
     println("Deseja excluir algum jogo da lista original? S/N")
     val opcao = leitura.nextLine()
     if (opcao.equals("S", true)) {
-        gamer.pesquisados.forEach{
+        gamerDTO.pesquisados.forEach{
             println("Jogo: ${it?.titulo}")
         }
         println("\n Informe a posição do jogo que deseja excluir: ")
         val posicao = leitura.nextInt()
-        gamer.pesquisados.removeAt(posicao)
-        gamer.pesquisados.forEach{
+        gamerDTO.pesquisados.removeAt(posicao)
+        gamerDTO.pesquisados.forEach{
             println("Jogo: ${it?.titulo}")
         }
     }

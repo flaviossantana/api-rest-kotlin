@@ -1,8 +1,8 @@
 package org.game.api.extensao
 
 import org.game.api.data.api.GameHubAPI
-import org.game.api.data.modelo.Jogo
+import org.game.api.data.dto.JogoDTO
 
-fun GameHubAPI.toJogo(): Jogo {
-    return Jogo(this.titulo, this.capa, this.preco)
+fun GameHubAPI.toJogo(): JogoDTO {
+    return JogoDTO(this.titulo, this.capa, this.preco)
 }

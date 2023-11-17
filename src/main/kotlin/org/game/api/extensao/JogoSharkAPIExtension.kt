@@ -1,8 +1,8 @@
 package org.game.api.extensao
 
 import org.game.api.data.api.GameSharkAPI
-import org.game.api.data.modelo.Jogo
+import org.game.api.data.dto.JogoDTO
 
-fun GameSharkAPI.toJogo(): Jogo {
-    return Jogo(this.info.title, this.info.thumb, this.info.cheapest)
+fun GameSharkAPI.toJogo(): JogoDTO {
+    return JogoDTO(this.info.title, this.info.thumb, this.info.cheapest)
 }

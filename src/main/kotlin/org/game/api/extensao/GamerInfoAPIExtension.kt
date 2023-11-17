@@ -1,8 +1,8 @@
 package org.game.api.extensao
 
 import org.game.api.data.api.GamerInfoAPI
-import org.game.api.data.modelo.Gamer
+import org.game.api.data.dto.GamerDTO
 
-fun GamerInfoAPI.toGamer(): Gamer {
-    return Gamer(this.nome, this.email, this.dataNascimento, this.usuario)
+fun GamerInfoAPI.toGamer(): GamerDTO {
+    return GamerDTO(this.nome, this.email, this.dataNascimento, this.usuario)
 }

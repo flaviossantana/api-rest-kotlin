@@ -1,4 +1,4 @@
-package org.game.api.data.modelo
+package org.game.api.data.dto
 
 import org.game.api.data.contrato.Recomendavel
 import org.game.api.extensao.transformarEmIdade
@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.util.*
 import kotlin.random.Random
 
-data class Gamer(
+data class GamerDTO(
     var nome: String,
     var email: String
 ) : Recomendavel {
@@ -21,10 +21,10 @@ data class Gamer(
         }
     var idInterno: String? = null
         private set
-    var plano: Plano = PlanoAvulso("BRONZE")
-    val pesquisados = mutableListOf<Jogo?>()
-    val recomendados = mutableListOf<Jogo>()
-    val alugados = mutableListOf<Aluguel>()
+    var planoDTO: PlanoDTO = PlanoAvulsoDTO("BRONZE")
+    val pesquisados = mutableListOf<JogoDTO?>()
+    val recomendados = mutableListOf<JogoDTO>()
+    val alugados = mutableListOf<AluguelDTO>()
     private val notas = mutableListOf<Int>()
     override val media: Double
         get() = notas.average()
@@ -62,15 +62,15 @@ data class Gamer(
         check(nome.isNotBlank() && nome.isNotEmpty()) { "Nome informado inválido :(" }
     }
 
-    fun alugar(jogo: Jogo, inicio: LocalDate, final: LocalDate): Aluguel {
-        val alugel = Aluguel(this, jogo, Periodo(inicio, final))
+    fun alugar(jogoDTO: JogoDTO, inicio: LocalDate, final: LocalDate): AluguelDTO {
+        val alugel = AluguelDTO(this, jogoDTO, PeriodoDTO(inicio, final))
         this.alugados.add(alugel)
         return alugel
     }
 
-    fun avaliar(jogo: Jogo, nota: Int) {
-        jogo.recomendar(nota)
-        recomendados.add(jogo)
+    fun avaliar(jogoDTO: JogoDTO, nota: Int) {
+        jogoDTO.recomendar(nota)
+        recomendados.add(jogoDTO)
     }
 
     override fun recomendar(nota: Int) {
@@ -87,13 +87,13 @@ data class Gamer(
                 "aligueis=$alugados)"
     }
 
-    fun jogosDoMes(mesAluguel: Int): List<Aluguel> {
+    fun jogosDoMes(mesAluguel: Int): List<AluguelDTO> {
         return this.alugados
             .filter { it.periodo.inicio.monthValue == mesAluguel }
     }
 
     companion object {
-        fun criar(leitura: Scanner): Gamer {
+        fun criar(leitura: Scanner): GamerDTO {
             println("Bem vindo! Vamos fazer seu cadastro. Digite seu nome:")
             val nome = leitura.nextLine()
             println("Digite seu e-mail:")
@@ -107,10 +107,10 @@ data class Gamer(
                 println("Digite seu nome de usuário:")
                 val usuario = leitura.nextLine()
 
-                val gamer = Gamer(nome, email, dataNascimento, usuario)
+                val gamerDTO = GamerDTO(nome, email, dataNascimento, usuario)
 
                 val transformarEmIdade = runCatching {
-                    val idade = gamer.dataNascimento?.transformarEmIdade()
+                    val idade = gamerDTO.dataNascimento?.transformarEmIdade()
                     println("Você tem $idade anos")
                 }
 
@@ -122,10 +122,10 @@ data class Gamer(
 
 
 
-                return gamer
+                return gamerDTO
             }
 
-            return Gamer(nome, email)
+            return GamerDTO(nome, email)
         }
     }
 

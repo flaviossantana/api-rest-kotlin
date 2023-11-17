@@ -1,10 +1,10 @@
-package org.game.api.data.modelo
+package org.game.api.data.dto
 
 import com.google.gson.annotations.Expose
 import org.game.api.data.contrato.Recomendavel
 
 
-data class Jogo(
+data class JogoDTO(
     @Expose val titulo: String,
     @Expose val capa: String
 ) : Recomendavel {

@@ -11,7 +11,7 @@ fun main(){
 
     gamerDAO.salvar(gamerDTO)
 
-    val gamers = gamerDAO.getGamers()
+    val gamers = gamerDAO.todos()
 
     println(gamers)
 

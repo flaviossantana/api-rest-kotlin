@@ -6,16 +6,16 @@ import org.game.api.data.dto.GamerDTO
 import org.game.api.extensao.toEntity
 import org.game.api.extensao.toGamer
 
-class GamerDAO(private val manager: EntityManager) {
+class GamerDAO(private val manager: EntityManager): APIGamesDAO<GamerDTO>() {
 
-    fun getGamers(): List<GamerDTO> {
+    override fun todos(): List<GamerDTO> {
         val query = manager.createQuery("FROM GamerEntity", GamerEntity::class.java)
         return query.resultList.map { it.toGamer() }
     }
 
-    fun salvar(gamerDTO: GamerDTO) {
+    override fun salvar(objeto: GamerDTO) {
         manager.transaction.begin()
-        manager.persist(gamerDTO.toEntity())
+        manager.persist(objeto.toEntity())
         manager.transaction.commit()
     }
 }

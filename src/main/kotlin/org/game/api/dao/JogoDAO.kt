@@ -6,15 +6,15 @@ import org.game.api.data.dto.JogoDTO
 import org.game.api.extensao.toEntity
 import org.game.api.extensao.toJogo
 
-class JogoDAO(val entityManager: EntityManager) {
+class JogoDAO(val entityManager: EntityManager): APIGamesDAO<JogoDTO>() {
 
-    fun salvar(jogoDTO: JogoDTO) {
+    override fun salvar(objeto: JogoDTO) {
         entityManager.transaction.begin()
-        entityManager.persist(jogoDTO.toEntity())
+        entityManager.persist(objeto.toEntity())
         entityManager.transaction.commit()
     }
 
-    fun todos(): List<JogoDTO> {
+    override fun todos(): List<JogoDTO> {
         val query = entityManager.createQuery("FROM JogoEntity", JogoEntity::class.java)
         return query.resultList.map { it.toJogo() }
     }

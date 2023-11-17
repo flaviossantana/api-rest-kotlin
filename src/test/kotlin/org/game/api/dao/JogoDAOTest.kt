@@ -16,8 +16,14 @@ fun main(){
 
     jogoDao.salvar(jogoDTO)
 
-    val todos = jogoDao.todos()
-    println(todos)
+    var todos = jogoDao.todos()
+    println(todos.size)
+
+    val buscarPorId = jogoDao.buscarPorId( todos[todos.size-1].id)
+    jogoDao.excluir(buscarPorId.id)
+
+    todos = jogoDao.todos()
+    println(todos.size)
 
     entityManager.close()
 }

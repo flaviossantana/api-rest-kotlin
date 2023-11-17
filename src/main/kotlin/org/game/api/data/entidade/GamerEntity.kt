@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "gamers")
-class GamerEntity(
+open class GamerEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int = 0,
     val nome: String = "",

@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "jogos")
-class JogoEntity(
+open class JogoEntity(
     val titulo: String = "",
     val capa: String = "",
     val preco: Double = 0.0,

@@ -10,18 +10,23 @@ sealed class PlanoEntity(
     val tipo: String,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long = 0)
+    var id: Int = 0)
 
 @Entity
 @DiscriminatorValue("AVULSO")
-open class PlanoAvulsoEntity(tipo: String): PlanoEntity(tipo)
+open class PlanoAvulsoEntity(
+    tipo: String = "AVULSO",
+    id: Int = 0
+) : PlanoEntity(tipo, id)
 
 @Entity
 @DiscriminatorValue("ASSINATURA")
-class PlanoAssinaturaEntity(
-    tipo: String,
-    val mensalidade: Double,
-    val jogosIncluidos: Int,
-    val percentualDescontoReputacao: Double): PlanoEntity(tipo)
+open class PlanoAssinaturaEntity(
+    tipo: String = "ASSINATURA",
+    val mensalidade: Double = 0.0,
+    val jogosIncluidos: Int = 0,
+    val percentualDescontoReputacao: Double = 0.0,
+    id: Int = 0
+) : PlanoEntity(tipo, id)
 
 

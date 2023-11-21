@@ -3,6 +3,7 @@ package org.game.api.dao
 import jakarta.persistence.EntityManager
 import org.game.api.data.dto.GamerDTO
 import org.game.api.data.entidade.GamerEntity
+import org.game.api.extensao.toDTO
 import org.game.api.extensao.toEntity
 import org.game.api.extensao.toGamer
 
@@ -14,7 +15,7 @@ class GamerDAO(entityManager: EntityManager) :
     }
 
     override fun toDTO(entity: GamerEntity): GamerDTO {
-        return entity.toGamer()
+        return entity.toGamer().apply { planoDTO = entity.plano.toDTO() }
     }
 
 

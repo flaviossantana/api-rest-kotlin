@@ -5,8 +5,14 @@ import org.game.api.data.dto.GamerDTO
 fun main(){
 
     val entityManager = ConexaoDAO.getEntityManager()
+
     val gamerDAO = GamerDAO(entityManager)
-    val gamerDTO = GamerDTO("Jogador Numero #1", "play01@email.com")
+    val planoDAO = PlanoDAO(entityManager)
+
+    val planoAvulso = planoDAO.buscarPorId(1)
+
+    val gamerDTO = GamerDTO("Jogador Numero #2", "play01@email.com")
+    gamerDTO.planoDTO = planoAvulso
 
 
     gamerDAO.salvar(gamerDTO)
